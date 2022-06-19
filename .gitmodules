@@ -1,0 +1,3 @@
+[submodule "uni_devops_flask_application"]
+	path = uni_devops_flask_application
+	url = https://github.com/N10100010/uni_devops_flask_application.git
