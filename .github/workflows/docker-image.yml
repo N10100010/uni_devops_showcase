@@ -18,11 +18,5 @@ jobs:
       run: rm -r -f ./uni_devops_flask_application
     - name: clone submodule
       run: git clone https://github.com/N10100010/uni_devops_flask_application.git
-    - name: Install test requirements
-      run: pip install -r test_requirements.txt
-    - name: Build and run contianer
-      run: docker-compose up -d
-    - name: LS
-      run: ls -la
-    - name: Test active container
-      run: pytest tests/test_container.py
+    - name: Build contianer
+      run: docker-compose build
