@@ -6,7 +6,14 @@ RUN apt-get install -y --no-install-recommends \
 
 RUN pip3 install uwsgi
 
-COPY requirements.txt /project/requirements.txt
+COPY uni_devops_flask_application/requirements.txt /project/requirements.txt
+
+COPY server-conf/nginx.conf /etc/nginx/
+COPY server-conf/flask-site-nginx.conf /etc/nginx/conf.d/
+COPY server-conf/uwsgi.ini /etc/uwsgi/
+COPY server-conf/supervisord.conf /etc/supervisor/
+
+COPY uni_devops_flask_application/src /project/src
 
 RUN pip3 install -r /project/requirements.txt
 
@@ -15,12 +22,6 @@ RUN useradd --no-create-home nginx
 RUN rm /etc/nginx/sites-enabled/default
 RUN rm -r /root/.cache
 
-COPY server-conf/nginx.conf /etc/nginx/
-COPY server-conf/flask-site-nginx.conf /etc/nginx/conf.d/
-COPY server-conf/uwsgi.ini /etc/uwsgi/
-COPY server-conf/supervisord.conf /etc/supervisor/
-
-COPY uni_devops_flask_application/src /project/src
 
 WORKDIR /project
 
